@@ -2,6 +2,7 @@ from typing import Union
 
 from fastapi import FastAPI
 from api import router
+
 # from core.config import config
 
 def init_routers(app_: FastAPI) -> None:
