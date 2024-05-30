@@ -11,18 +11,18 @@ class Config(BaseSettings):
     READER_DB_URL: str = f"mysql+aiomysql://fastapi:fastapi@localhost:3306/fastapi"
     JWT_SECRET_KEY: str = "fastapi"
     JWT_ALGORITHM: str = "HS256"
-    SENTRY_SDN: str = None
-    # CELERY_BROKER_URL: str = "amqp://user:bitnami@localhost:5672/"
-    # CELERY_BACKEND_URL: str = "redis://:password123@localhost:6379/0"
+    # SENTRY_SDN: str = None
+    CELERY_BROKER_URL: str = "amqp://user:bitnami@localhost:5672/"
+    CELERY_BACKEND_URL: str = "redis://:password123@localhost:6379/0"
     REDIS_HOST: str = "localhost"
     REDIS_PORT: int = 6379
 
 
-# class DevelopmentConfig(Config):
-#     WRITER_DB_URL: str = f"mysql+aiomysql://root:fastapi@db:3306/fastapi"
-#     READER_DB_URL: str = f"mysql+aiomysql://root:fastapi@db:3306/fastapi"
-#     REDIS_HOST: str = "redis"
-#     REDIS_PORT: int = 6379
+class DevelopmentConfig(Config):
+    WRITER_DB_URL: str = f"mysql+aiomysql://root:fastapi@db:3306/fastapi"
+    READER_DB_URL: str = f"mysql+aiomysql://root:fastapi@db:3306/fastapi"
+    REDIS_HOST: str = "redis"
+    REDIS_PORT: int = 6379
 
 
 class LocalConfig(Config):
@@ -30,10 +30,10 @@ class LocalConfig(Config):
     READER_DB_URL: str = f"mysql+aiomysql://fastapi:fastapi@localhost:3306/fastapi"
 
 
-# class ProductionConfig(Config):
-#     DEBUG: str = False
-#     WRITER_DB_URL: str = f"mysql+aiomysql://fastapi:fastapi@localhost:3306/prod"
-#     READER_DB_URL: str = f"mysql+aiomysql://fastapi:fastapi@localhost:3306/prod"
+class ProductionConfig(Config):
+    DEBUG: str = False
+    WRITER_DB_URL: str = f"mysql+aiomysql://fastapi:fastapi@localhost:3306/prod"
+    READER_DB_URL: str = f"mysql+aiomysql://fastapi:fastapi@localhost:3306/prod"
 
 
 def get_config():
@@ -44,6 +44,5 @@ def get_config():
         # "prod": ProductionConfig(),
     }
     return config_type[env]
-
 
 config: Config = get_config()

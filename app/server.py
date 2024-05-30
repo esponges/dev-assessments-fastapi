@@ -1,9 +1,9 @@
-from typing import Union
+# from typing import Union
 
 from fastapi import FastAPI
 from api import router
 
-# from core.config import config
+from core.config import config
 
 def init_routers(app_: FastAPI) -> None:
     app_.include_router(router)
@@ -13,8 +13,8 @@ def create_app() -> FastAPI:
         title="Hide",
         description="Hide API",
         version="1.0.0",
-        # docs_url=None if config.ENV == "production" else "/docs",
-        # redoc_url=None if config.ENV == "production" else "/redoc",
+        docs_url=None if config.ENV == "production" else "/docs",
+        redoc_url=None if config.ENV == "production" else "/redoc",
         # # dependencies=[Depends(Logging)],
         # middleware=make_middleware(),
     )
